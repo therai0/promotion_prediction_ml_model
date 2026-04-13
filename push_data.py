@@ -1,3 +1,4 @@
+from turtle import clear
 from dotenv import load_dotenv
 import os 
 import pandas as pd 
@@ -38,10 +39,13 @@ class LoadData:
             raise Exception(e)
 
 
+
+
 if __name__ == "__main__":
     database = "employee"
     collectoin= "emp_promotion_db"
     ld = LoadData()
-    records = ld.csv_to_json("data/employee_promotion_prediction.csv")
-    ld.load_to_database(collection=collectoin,records=records,database=database)
+    # records = ld.csv_to_json("data/employee_promotion_prediction.csv")
+    # ld.load_to_database(collection=collectoin,records=records,database=database)
+    ld.read_data(collection=collectoin,database=database)
     
