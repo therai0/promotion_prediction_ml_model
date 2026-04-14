@@ -28,3 +28,5 @@ class DataIngestionConfig:
         except Exception as e:
             raise Exception(e)
 
+
+

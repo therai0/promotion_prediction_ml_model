@@ -12,7 +12,9 @@ ARTIFACTS_DIR:str = "Artifacts"
 TARGET_COLUMN = "promoted"
 DATABASE_NAME = "employee"
 COLLECTION_NAME = "emp_promotion_db"
+PREPROCESSOR_MODEL = "preprocessor.pkl"
 MONGODB_URL = os.getenv("MONGODB_URL")
+
 
 
 
@@ -23,3 +25,8 @@ DATA_INGESTION_DIR_NAME = "data_ingestion"
 DATA_INGESTION_FEATURE_STORE = "feature_store"
 DATA_INGESTION_TRAIN_AND_TEST_RATIO:float = 0.2
 DATA_INGESTION_INGESTED_DIR = "ingested"
+
+
+"""
+All the constant varaible use for Data transformation
+"""
