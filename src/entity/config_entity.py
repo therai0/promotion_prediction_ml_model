@@ -30,3 +30,10 @@ class DataIngestionConfig:
 
 
 
+
+class DataTransformationConfig:
+    def __init__(self,traning_pipeline_config:TrainingPipelineConfig):
+        try:
+            self.data_transformantion_dir = os.path.join(traning_pipeline_config.artifact_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME)
+        except Exception as e:
+            raise Exception(e)
