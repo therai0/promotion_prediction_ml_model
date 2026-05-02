@@ -24,7 +24,7 @@ class DataTransformation:
         try:
             oridnal_encod_columns = ["education_level","city_tier","gender","marital_status","employment_type"]
             onehot_encod_columns  = ["department"]
-            num_columns = ['employee_id', 'age', 'years_at_company',
+            num_columns = ['age', 'years_at_company',
             'years_in_current_role', 'years_since_last_promotion', 'team_size',
             'performance_score', 'performance_last_year',
             'performance_two_years_ago', 'manager_rating', 'peer_feedback_score',
@@ -37,26 +37,26 @@ class DataTransformation:
             'mentoring_sessions', 'salary', 'salary_increase_percent',
             'bonus_last_year', 'stock_options', 'attendance_rate', 'late_days',
             'employee_engagement_score', 'job_satisfaction_score',
-            'internal_mobility_score', 'promoted']
+            'internal_mobility_score']
 
             ordinal_pipeline = Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
-                    ("OrdinalEncoder",OrdinalEncoder),
-                    ("scalar",StandardScaler)
+                    ("OrdinalEncoder",OrdinalEncoder()),
+                    ("scalar",StandardScaler())
                 ]
             )
             onehot_pipeline = Pipeline(
                 steps=[
                     ("imouter",SimpleImputer(strategy="most_frequent")),
-                    ("OneHotEncoding",OneHotEncoder),
-                    ("scalar",StandardScaler)
+                    ("OneHotEncoding",OneHotEncoder()),
+                    # ("scalar",StandardScaler())
                 ]
                 )
             num_pipeline = Pipeline(
                 steps = [
                     ("imputer",SimpleImputer(strategy="mean")),
-                    ("scalar",StandardScaler)
+                    ("scalar",StandardScaler())
                 ]
             )
 
@@ -76,16 +76,18 @@ class DataTransformation:
     def init_data_transformation(self):
         try:
             train_data = pd.read_csv(self.data_ingestion_artifacts.train_file_path)
-            test_data = pd.read_csv(self.data_ingestion_artifacts.train_file_path)
+            test_data = pd.read_csv(self.data_ingestion_artifacts.test_file_path)
 
             # droping employee_id and employee_id is exist 
-            train_df = train_data.drop(["employee_id","employee_id"],axis=1,errors="ignore")
-            test_df = test_data.drop(["employee_id","employee_id"],axis=1,errors="ignore")
+            train_df = train_data.drop(["employee_id","Unnamed: 0"],axis=1, errors="ignore")
+            test_df = test_data.drop(["employee_id","Unnamed: 0"],axis=1, errors="ignore")
 
-            input_fet_train_df = train_df.drop([TARGET_COLUMN],axis=1)
+            
+
+            input_fet_train_df = train_df.drop([TARGET_COLUMN],axis=1,errors="ignore")
             target_train_fet = train_df[TARGET_COLUMN]
 
-            input_fet_test_df = test_df.drop([TARGET_COLUMN],axis=1)
+            input_fet_test_df = test_df.drop([TARGET_COLUMN],axis=1,errors="ignore")
             target_test_fet = test_df[TARGET_COLUMN]
 
             preprocessor = self.get_transformer_object()
@@ -99,7 +101,7 @@ class DataTransformation:
             save_object(file_path = self.data_transformation_config.data_transformed_object_file_path,obj=preprocessor)
 
             # saving object for model train
-            save_object("final_model/preprocessor.pkl",ojb=preprocessor)
+            save_object("final_model/preprocessor.pkl",obj=preprocessor)
 
             # saving numpy array 
             save_numpy_arr(self.data_transformation_config.data_transformed_train_file_path,train_arr)
@@ -112,4 +114,3 @@ class DataTransformation:
             )
         except Exception as e:
             raise Exception(e)
-    

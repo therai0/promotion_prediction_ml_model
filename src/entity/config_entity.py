@@ -39,7 +39,7 @@ class DataTransformationConfig:
             """
             self.data_transformantion_dir = os.path.join(traning_pipeline_config.artifact_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME)
             self.data_transformed_train_file_path = os.path.join(self.data_transformantion_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,training_pipeline.TRANSFORMED_TRAIN_FILE_NAME)
-            self.data_transformed_test_file_path = os.path.join(self.data_transformantion_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,training_pipeline.TEST_FILE_NAME)
+            self.data_transformed_test_file_path = os.path.join(self.data_transformantion_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,training_pipeline.TRANSFORMED_TEST_FILE_NAME)
             self.data_transformed_object_file_path = os.path.join(self.data_transformantion_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,training_pipeline.PREPROCESSOR_MODEL_NAME)
 
         except Exception as e:
