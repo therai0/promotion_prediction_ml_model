@@ -12,10 +12,9 @@ ARTIFACTS_DIR:str = "Artifacts"
 TARGET_COLUMN = "promoted"
 DATABASE_NAME = "employee"
 COLLECTION_NAME = "emp_promotion_db"
-PREPROCESSOR_MODEL = "preprocessor.pkl"
+PREPROCESSOR_MODEL_NAME = "preprocessor.pkl"
 MONGODB_URL = os.getenv("MONGODB_URL")
-
-
+TARGET_COLUMN = "promoted"
 
 
 """
@@ -33,6 +32,10 @@ All the constant varaible use for Data transformation
 DATA_TRANSFORMATION_DIR_NAME = "data_transformation"
 DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR = "transformed"
 DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR = "transformed_object"
+TRANSFORMED_TRAIN_FILE_NAME = "train.npy"
+TRANSFORMED_TEST_FILE_NAME = "test.npy"
+
+
 
 
 

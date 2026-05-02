@@ -4,3 +4,4 @@ matplotlib
 seaborn
 pymongo
 scikit-learn
+dill
