@@ -4,7 +4,7 @@ from src.entity.entity_artifacts import ModelTrainArtifacts,DataTransformationAr
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC 
-from sklearn.ensemble import AdaBoostClassifier,RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier,AdaBoostClassifier
 from sklearn.metrics import accuracy_score
 
 # load numpy arrray 
@@ -27,9 +27,10 @@ class ModelTrainer:
                 y_pred = model.predict(X_test)
                 acc_score = accuracy_score(y_test,y_pred)
                 models_acc[mod] = acc_score
-
             high_score  = max(list(models_acc.values()))
+            print(high_score)
             index =  list(models_acc.values()).index(high_score)
+            print(list(models_acc.keys())[index])
             return list(models_acc.keys())[index]
         except Exception as e:
             raise Exception(e)
@@ -46,16 +47,17 @@ class ModelTrainer:
             y_test = test_arr[:,-1]
 
             models = {
-                "LogisticRegression":LogisticRegression(),
-                "DecisionTreeClassifier":DecisionTreeClassifier(),
-                "RandomForestClassifier":RandomForestClassifier(),
-                "SVC":SVC(),
+                "LogisticRegression":LogisticRegression(class_weight='balanced'),
+                "DecisionTreeClassifier":DecisionTreeClassifier(class_weight='balanced'),
+                "RandomForestClassifier":RandomForestClassifier(class_weight='balanced'),
+                "SVC":SVC(class_weight='balanced'),
                 "AdaBoostClassifier":AdaBoostClassifier()
             }
             
             best_model = self.get_best_model(models=models,X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test)
 
             save_object(self.model_trainer_config.model_file_path,best_model)
+            save_object("final_model/model.pkl",best_model)
 
             return ModelTrainArtifacts(
             train_model_file_path = self.model_trainer_config.model_file_path
