@@ -36,6 +36,12 @@ TRANSFORMED_TRAIN_FILE_NAME = "train.npy"
 TRANSFORMED_TEST_FILE_NAME = "test.npy"
 
 
+TRAIN_MODEL_NAME = "model.pkl"
+TRAIN_MODEL_DIR = "train_model"
+
+
+
+
 
 
 

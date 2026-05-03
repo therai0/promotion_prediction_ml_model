@@ -44,3 +44,10 @@ class DataTransformationConfig:
 
         except Exception as e:
             raise Exception(e)
+
+class ModelTrainerConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        try:
+            self.model_file_path = os.path.join(training_pipeline_config.artifact_dir,training_pipeline.TRAIN_MODEL_DIR,training_pipeline.TRAIN_MODEL_NAME)
+        except Exception as e:
+            raise Exception(e)

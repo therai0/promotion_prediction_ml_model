@@ -15,5 +15,10 @@ class DataTransformationArtifacts:
     transformed_test_file_path:str 
     
 
+@dataclass 
+class ModelTrainArtifacts:
+    train_model_file_path:str 
+    
+
 
 
